@@ -1,7 +1,10 @@
 .navbar {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: left;
+    justify-content: space-between;
+    background-color: rgb(253, 181, 86);
+    padding: 2rem;
+    border-bottom: #27ae60 solid 5px;
 }
 
 .navbar__item {
