@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react"
 import { EventContext } from "./EventProvider.js"
+import { useHistory } from "react-router-dom"
 
 export const EventList = (props) => {
     const { events, getEvents } = useContext(EventContext)
@@ -8,10 +9,15 @@ export const EventList = (props) => {
         getEvents()
     }, [])
 
+    const history = useHistory()
+
     return (
         <article className="events">
             <header className="events__header">
                 <h3>Level Up Game Events</h3>
+            <button onClick={() => {
+                history.push({ pathname: "/events/new"})
+            }}>New Event</button>
             </header>
             {
                 events.map(event => {

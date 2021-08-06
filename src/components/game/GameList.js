@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react"
 import { GameContext } from "./GameProvider.js"
 import { useHistory } from "react-router-dom"
 
-export const GameList = (props) => {
+export const GameList = () => {
     const { games, getGames } = useContext(GameContext)
 
     useEffect(() => {
