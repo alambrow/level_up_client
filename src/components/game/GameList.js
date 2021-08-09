@@ -11,7 +11,7 @@ export const GameList = () => {
     }, [])
 
     const history = useHistory()
-
+    console.log(games)
     return (
         <article className="games">
 
@@ -24,9 +24,10 @@ export const GameList = () => {
             {
                 games.map(game => {
                     return <section key={`game--${game.id}`} className="game_card">
-                        <div className="game__title"><str>{game.name} by {game.maker}</str></div>
+                        <div className="game__title">{game.name} by {game.maker}</div>
                         <div className="game__players">{game.number_of_players} players needed</div>
                         <div className="game__skillLevel">Premise: {game.description}</div>
+                        <div className="game__game_type">Game type: {game.game_type.label}</div>
                         <br/>
                     </section>
                 })
