@@ -35,7 +35,6 @@ export const EventProvider = (props) => {
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
         })
-            .then(response => response.json())
             .then(getEvents)
     }
 
@@ -46,7 +45,6 @@ export const EventProvider = (props) => {
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
         })
-            .then(response => response.json())
             .then(getEvents)
     }    
 

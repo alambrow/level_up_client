@@ -35,7 +35,7 @@ export const EventList = (props) => {
                             event.joined
                                 ? <button className="btn btn-3"
                                     onClick={() => {
-                                        setChange(event.id)
+                                        setChange(Math.random())
                                         leaveEvent(event.id)
                                     }}
                                     >Leave</button>
