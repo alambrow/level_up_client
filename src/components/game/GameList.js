@@ -28,7 +28,7 @@ export const GameList = () => {
                         <div className="game__players">{game.number_of_players} players needed</div>
                         <div className="game__skillLevel">Premise: {game.description}</div>
                         <div className="game__game_type">Game type: {game.game_type.label}</div>
-                        <br/>
+                        <button onClick={e => history.push(`/games/${game.id}`)}> Edit Game </button>
                     </section>
                 })
             }

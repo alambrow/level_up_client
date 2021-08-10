@@ -1,29 +1,29 @@
 import React, { useContext, useState, useEffect } from "react"
 import { GameContext } from "./GameProvider.js"
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 
-export const GameForm = () => {
+export const EditGameForm = () => {
+    const {  getGameTypes, gameTypes, getGameById, updateGame } = useContext(GameContext)
+    const [currentGame, setCurrentGame] = useState({})
+    const {gameId} = useParams()
     const history = useHistory()
-    const { createGame, getGameTypes, gameTypes } = useContext(GameContext)
 
-    /*
-        Since the input fields are bound to the values of
-        the properties of this state variable, you need to
-        provide some default values.
-    */
-    const [currentGame, setCurrentGame] = useState({
-        name: "",
-        game_type: 0,
-        description: "",
-        number_of_players: 0,
-        maker: ""
-    })
+    // TODO: Get game info by id, then populate form with that data, resend via PUT to edit
 
-    /*
-        Get game types on initialization so that the <select>
-        element presents game type choices to the user.
-    */
+    // const [currentGame, setCurrentGame] = useState({
+    //     name: gameObj.name,
+    //     game_type: gameObj.game_type,
+    //     description: gameObj.description,
+    //     number_of_players: gameObj.number_of_players,
+    //     maker: gameObj.maker
+    // })
+
+    useEffect(() => {
+        getGameById(gameId).then(data =>  
+            setCurrentGame(data))
+    }, [])
+
     useEffect(() => {
         getGameTypes()
     }, [])
@@ -35,6 +35,7 @@ export const GameForm = () => {
         setCurrentGame(newGameState)
     }
 
+    console.log(currentGame, "current game")
     return (
         <form className="gameForm">
             <h2 className="gameForm__name">Register New Game</h2>
@@ -62,7 +63,7 @@ export const GameForm = () => {
                     />
                     <label htmlFor="game_type">Game type:</label>
                     <br/>
-                    <select name="game_type" value="0" onChange={handleControlledInputChange}>Select one
+                    <select name="game_type" defaultValue={currentGame.game_type} onChange={handleControlledInputChange}>Select one
                     {
                         gameTypes.map(gT => (
                             <option key={gT.id} value={gT.id}>
@@ -82,16 +83,17 @@ export const GameForm = () => {
                     evt.preventDefault()
 
                     const game = {
+                        id: currentGame.id,
                         name: currentGame.name,
                         description: currentGame.description,
                         maker: currentGame.maker,
                         number_of_players: parseInt(currentGame.number_of_players),
-                        game_type: parseInt(currentGame.game_type)
+                        game_type: parseInt(currentGame.game_type.id)
                     }
 
-                    // Send POST request to your API
-                    createGame(game)
-                        .then(() => history.push("/"))
+                    // Send PUT request to your API
+                    updateGame(game)
+                    history.push("/")
                 }}
                 className="btn btn-primary">Create</button>
         </form>
