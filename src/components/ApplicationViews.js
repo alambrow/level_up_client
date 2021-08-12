@@ -9,6 +9,7 @@ import { EventForm } from "./game/EventForm.js"
 import { ProfileProvider } from "./auth/ProfileProvider.js"
 import { Profile } from "./auth/Profile.js"
 import { EditGameForm } from "./game/EditGameForm.js"
+import { DragMe } from "./test/Draggable.js"
 
 export const ApplicationViews = () => {
     return <>
