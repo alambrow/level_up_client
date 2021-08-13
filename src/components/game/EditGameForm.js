@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import { GameContext } from "./GameProvider.js"
 import { useHistory, useParams } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 
 
 export const EditGameForm = () => {
@@ -28,7 +29,7 @@ export const EditGameForm = () => {
     console.log(currentGame, "current game")
     return (
         <form className="gameForm">
-            <h2 className="gameForm__name">Register New Game</h2>
+            <h2 className="gameForm__name">Edit Game</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Title: </label>
@@ -53,7 +54,7 @@ export const EditGameForm = () => {
                     />
                     <label htmlFor="game_type">Game type:</label>
                     <br/>
-                    <select name="game_type" onChange={handleControlledInputChange}>Select one
+                    <select name="game_type" value={currentGame.game_type} onChange={handleControlledInputChange}>Select one
                     {
                         gameTypes.map(gT => (
                             <option key={gT.id} value={gT.id}>
@@ -65,10 +66,7 @@ export const EditGameForm = () => {
                 </div>
             </fieldset>
 
-            {/* You create the rest of the input fields for each game property */}
-
-            <button type="submit"
-                onClick={evt => {
+            <Button variant="contained" color="secondary" onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()
 
@@ -84,8 +82,9 @@ export const EditGameForm = () => {
                     // Send PUT request to your API
                     updateGame(game)
                     history.push("/games")
-                }}
-                className="btn btn-primary">Create</button>
+                }}>
+                Edit Game
+            </Button>
         </form>
     )
 }

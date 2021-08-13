@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import { GameContext } from "./GameProvider.js"
 import { EventContext } from "./EventProvider.js"
+import Button from '@material-ui/core/Button';
 
 export const EventForm = () => {
     const history = useHistory()
@@ -67,10 +68,8 @@ export const EventForm = () => {
                     </select>
                 </div>
             </fieldset>
-
-
-            <button type="submit"
-                onClick={evt => {
+            <br />
+            <Button variant="contained" color="secondary" onClick={evt => {
                     evt.preventDefault()
 
                     const event = {
@@ -84,8 +83,9 @@ export const EventForm = () => {
                     }
 
                     createEvent(event).then(() => history.push("/events"))
-                }}
-                className="btn btn-primary">Create Event</button>
+                }}>
+                Create Event
+            </Button>
         </form>
     )
 }

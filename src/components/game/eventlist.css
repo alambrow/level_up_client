@@ -20,3 +20,19 @@
     font-size: 1.5rem;
     padding-top: 1rem;
 }
+
+.event_game__name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-bottom: .2rem;
+}
+
+.event__time {
+    font-weight: 550;
+}
+
+.event_buttons__flex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}

@@ -48,12 +48,14 @@ export const GameList = () => {
                         <div className="game__players">{game.number_of_players} players needed</div>
                         <div className="game__skillLevel">Premise: {game.description}</div>
                         <div className="game__game_type">Game type: {game.game_type.label}</div>
-                        <Button variant="contained" color="secondary" onClick={e => history.push(`/games/${game.id}`)}>Edit</Button>
-                        <Button variant="contained" color="primary" 
-                        onClick={event => {
-                          event.preventDefault()
-                          deleteGame(game.id)}}
-                        >Delete</Button>
+                        <div className="game_buttons__flex">
+                          <Button variant="contained" color="secondary" onClick={e => history.push(`/games/${game.id}`)}>Edit</Button>
+                          <Button variant="contained" color="primary" 
+                          onClick={event => {
+                            event.preventDefault()
+                            deleteGame(game.id)}}
+                          >Delete</Button>
+                        </div>
                     </section>
                 </Paper>
             </Draggable>

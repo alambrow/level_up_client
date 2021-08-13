@@ -20,3 +20,9 @@
     font-size: 1.5rem;
     padding-top: 1rem;
 }
+
+.game_buttons__flex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}

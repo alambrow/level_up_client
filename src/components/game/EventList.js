@@ -46,19 +46,20 @@ export const EventList = (props) => {
             <Draggable>
                 <Paper elevation={3}>
                     <section key={event.id} className="registration">
-                        <div className="registration__game">{event.game.title}</div>
-                        <div>{event.description}</div>
-                        <div>
+                        <div className="event_game__name">{event.game.name}</div>
+                        <div className="registration__game">{event.game.description}</div>
+                        
+                        <div className="event__time">
                             {event.date} @ {event.time}
                         </div>
                         <div>
-                            Current Attendees: {event.attendees}
+                            Current Attendees: {event.attendees.length}
                         </div>
+                        <div className="event_buttons__flex">
                         {
                             event.joined
                                 ? <>
                                     <Button variant="contained" color="primary" onClick={() => {
-                                      
                                         leaveEvent(event.id)
                                     }}>Leave</Button>
                                     </>
@@ -74,6 +75,7 @@ export const EventList = (props) => {
                         }}>
                             Delete
                         </Button>
+                        </div>
                     </section>
                 </Paper>
             </Draggable>

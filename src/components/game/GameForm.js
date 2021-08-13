@@ -1,17 +1,12 @@
 import React, { useContext, useState, useEffect } from "react"
 import { GameContext } from "./GameProvider.js"
 import { useHistory } from 'react-router-dom'
-
+import Button from '@material-ui/core/Button';
 
 export const GameForm = () => {
     const history = useHistory()
     const { createGame, getGameTypes, gameTypes } = useContext(GameContext)
 
-    /*
-        Since the input fields are bound to the values of
-        the properties of this state variable, you need to
-        provide some default values.
-    */
     const [currentGame, setCurrentGame] = useState({
         name: "",
         game_type: 0,
@@ -20,10 +15,6 @@ export const GameForm = () => {
         maker: ""
     })
 
-    /*
-        Get game types on initialization so that the <select>
-        element presents game type choices to the user.
-    */
     useEffect(() => {
         getGameTypes()
     }, [])
@@ -74,9 +65,7 @@ export const GameForm = () => {
                 </div>
             </fieldset>
 
-            {/* You create the rest of the input fields for each game property */}
-
-            <button type="submit"
+            <Button variant="contained" color="secondary"
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()
@@ -93,7 +82,10 @@ export const GameForm = () => {
                     createGame(game)
                         .then(() => history.push("/games"))
                 }}
-                className="btn btn-primary">Create</button>
+            >
+                Create Game
+            </Button>
+
         </form>
     )
 }
