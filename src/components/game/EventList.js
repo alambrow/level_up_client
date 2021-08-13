@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react"
 import { EventContext } from "./EventProvider.js"
 import { useHistory } from "react-router-dom"
-
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import "./eventlist.css"
 import Draggable from "react-draggable"
+import { Paper } from "@material-ui/core";
 
 export const EventList = (props) => {
     const { events, getEvents, joinEvent, leaveEvent } = useContext(EventContext)
@@ -15,9 +17,32 @@ export const EventList = (props) => {
 
     const history = useHistory()
 
+    const useStyles = makeStyles((theme) => ({
+        root: {
+          '& > *': {
+            margin: theme.spacing(1),
+          },
+        },
+      }));
+
+    function OutlinedButton() {
+        const classes = useStyles();
+      
+        return (
+          <div className={classes.root}>
+            <Button variant="outlined" color="secondary" size="large"                     onClick={() => {
+                        history.push({ pathname: "/events/new" })
+                    }}>
+              Schedule a New Event
+            </Button>
+          </div>
+        );
+      }
+
     const renderEventForm = event => {
         return (
             <Draggable>
+                <Paper elevation={3}>
                     <section key={event.id} className="registration">
                         <div className="registration__game">{event.game.title}</div>
                         <div>{event.description}</div>
@@ -26,19 +51,20 @@ export const EventList = (props) => {
                         </div>
                         {
                             event.joined
-                                ? <button className="btn btn-3"
-                                    onClick={() => {
+                                ? <>
+                                    <Button variant="contained" color="primary" onClick={() => {
                                         setChange(Math.random())
                                         leaveEvent(event.id)
-                                    }}
-                                    >Leave</button>
-                                : <button className="btn btn-2"
+                                    }}>Leave</Button>
+                                    </>
+                                : <Button variant="contained" color="secondary"
                                     onClick={() => {
                                         joinEvent(event.id)
                                     }}
-                                    >Join</button>
+                                    >Join</Button>
                         }
                     </section>
+                </Paper>
             </Draggable>
         )
     }
@@ -47,11 +73,7 @@ export const EventList = (props) => {
         <article className="events">
             <header className="events__header">
                 <h1>Level Up Game Events</h1>
-                <button className="btn btn-2 btn-sep icon-create"
-                    onClick={() => {
-                        history.push({ pathname: "/events/new" })
-                    }}
-                >Schedule New Event</button>
+                {OutlinedButton()}
             </header>
             {
                 events.map(event => renderEventForm(event))

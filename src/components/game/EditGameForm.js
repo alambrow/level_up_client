@@ -88,7 +88,7 @@ export const EditGameForm = () => {
                         description: currentGame.description,
                         maker: currentGame.maker,
                         number_of_players: parseInt(currentGame.number_of_players),
-                        game_type: parseInt(currentGame.game_type.id)
+                        game_type: parseInt(currentGame.game_type)
                     }
 
                     // Send PUT request to your API

@@ -14,7 +14,7 @@ import { DragMe } from "./test/Draggable.js"
 export const ApplicationViews = () => {
     return <>
         <main style={{
-            margin: "5rem 2rem",
+            margin: "2rem 2rem",
             lineHeight: "1.75rem"
         }}>
             <GameProvider>
