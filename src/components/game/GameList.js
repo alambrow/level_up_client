@@ -48,6 +48,7 @@ export const GameList = () => {
                         <div className="game__players">{game.number_of_players} players needed</div>
                         <div className="game__skillLevel">Premise: {game.description}</div>
                         <div className="game__game_type">Game type: {game.game_type.label}</div>
+                        <br/>
                         <div className="game_buttons__flex">
                           <Button variant="contained" color="secondary" onClick={e => history.push(`/games/${game.id}`)}>Edit</Button>
                           <Button variant="contained" color="primary" 
@@ -70,6 +71,7 @@ export const GameList = () => {
               {OutlinedButton()}
             </div>
           </div>
+          <br/>
           <div className="games__box">
             {
                 games.map(game => renderGameForm(game))

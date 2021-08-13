@@ -55,6 +55,7 @@ export const EventList = (props) => {
                         <div>
                             Current Attendees: {event.attendees.length}
                         </div>
+                        <br/>
                         <div className="event_buttons__flex">
                         {
                             event.joined
@@ -88,6 +89,7 @@ export const EventList = (props) => {
                 <div className="events__title">Level Up Game Events</div>
                 <div className="events__button"> {OutlinedButton()}</div>
             </header>
+            <br/>
             <div className="events__box">
                 {
                     events.map(event => renderEventForm(event))

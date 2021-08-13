@@ -1,5 +1,7 @@
+import { Button } from "@material-ui/core"
 import React from "react"
 import { Link } from "react-router-dom"
+import { NavBar } from "../nav/NavBar"
 import "./Auth.css"
 
 export const Register = (props) => {
@@ -36,7 +38,7 @@ export const Register = (props) => {
                 .then(res => {
                     if ("token" in res) {
                         localStorage.setItem("lu_token", res.token)
-                        props.history.push("/")
+                        props.history.push("/games")
                     }
                 })
         } else {
@@ -45,6 +47,8 @@ export const Register = (props) => {
     }
 
     return (
+        <>
+        <NavBar />
         <main style={{ textAlign: "center" }}>
 
             <dialog className="dialog dialog--password" ref={passwordDialog}>
@@ -52,7 +56,7 @@ export const Register = (props) => {
                 <button className="button--close" onClick={e => passwordDialog.current.close()}>Close</button>
             </dialog>
 
-            <form className="form--login" onSubmit={handleRegister}>
+            <form className="register_all" onSubmit={handleRegister}>
                 <h1 className="h3 mb-3 font-weight-normal">Register an account</h1>
                 <fieldset>
                     <label htmlFor="firstName"> First Name </label>
@@ -81,12 +85,14 @@ export const Register = (props) => {
                 <fieldset style={{
                     textAlign: "center"
                 }}>
-                    <button className="btn btn-1 btn-sep icon-send" type="submit">Register</button>
+                    <Button variant="outlined" color="secondary" size="large" type="submit">Register</Button>
                 </fieldset>
             </form>
-            <section className="link--register">
+            
+            <section className="link__register">
                 Already registered? <Link to="/login">Login</Link>
             </section>
         </main>
+        </>
     )
 }

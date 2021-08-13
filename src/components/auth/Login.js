@@ -1,5 +1,7 @@
+import { Button } from "@material-ui/core"
 import React from "react"
 import { Link } from "react-router-dom"
+import { NavBar } from "../nav/NavBar"
 import "./Auth.css"
 
 
@@ -35,13 +37,15 @@ export const Login = props => {
     }
 
     return (
-        <main className="container--login">
+        <>
+        <NavBar />
+        <div>
             <dialog className="dialog dialog--auth" ref={invalidDialog}>
                 <div>Email or password was not valid.</div>
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
-            <section>
-                <form className="form--login" onSubmit={handleLogin}>
+            <section className="login_all">
+                <form onSubmit={handleLogin}>
                     <h1>Level Up</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
@@ -55,13 +59,20 @@ export const Login = props => {
                     <fieldset style={{
                         textAlign:"center"
                     }}>
-                        <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
+                        <div className="login_button__flex">
+                            <Button variant="contained" color="secondary" type="submit">Sign In</Button>
+                            <Button variant="outlined" color="secondary" size="large" onClick={ 
+                                (evt) => {
+                                    evt.preventDefault()
+                                    props.history.push('/register')
+                                
+                                }}>Not a member?</Button>
+                        </div>
                     </fieldset>
                 </form>
             </section>
-            <section className="link--register">
-                <Link to="/register">Not a member yet?</Link>
-            </section>
-        </main>
+        </div>
+        
+        </>
     )
 }

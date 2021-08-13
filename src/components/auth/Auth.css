@@ -68,3 +68,18 @@ fieldset {
     min-width: 15rem;
     min-height: 5rem;
 }
+
+
+.login_button__flex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.login_all {
+    margin: 1rem;
+}
+
+.register_all {
+    margin: 1rem;
+}

@@ -21,6 +21,11 @@
     padding-top: 1rem;
 }
 
+.game__title {
+    font-size: 1.5rem;
+    padding-bottom: .5rem;
+}
+
 .game_buttons__flex {
     display: flex;
     flex-flow: row wrap;
