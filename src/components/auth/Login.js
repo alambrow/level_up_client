@@ -26,7 +26,7 @@ export const Login = props => {
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem( "lu_token", res.token )
-                    props.history.push("/")
+                    props.history.push("/games")
                 }
                 else {
                     invalidDialog.current.showModal()

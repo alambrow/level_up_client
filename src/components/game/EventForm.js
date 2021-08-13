@@ -80,7 +80,7 @@ export const EventForm = () => {
                         description: currentEvent.description,
                         game: currentEvent.game,
                         host: localStorage.getItem("lu_token"),
-                        attendees: localStorage.getItem("lu_token")
+                        attendees: []
                     }
 
                     createEvent(event).then(() => history.push("/events"))

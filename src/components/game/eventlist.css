@@ -1,5 +1,22 @@
+.events__box {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
 .registration {
     border-radius: 10px;
     margin: 1rem;
     padding: 1rem;
+}
+
+.events__header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.events__title {
+    font-size: 1.5rem;
+    padding-top: 1rem;
 }

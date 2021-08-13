@@ -28,6 +28,16 @@ export const EventProvider = (props) => {
         .then(getEvents)
     }
 
+    const deleteEvent = eventId => {
+        return fetch(`http://localhost:8000/events/${eventId}`, {
+            method: "DELETE",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("lu_token")}`
+            }
+        })
+        .then(getEvents)
+    }
+
     const joinEvent = eventId => {
         return fetch(`http://localhost:8000/events/${eventId}/signup`, {
             method: "POST",
@@ -51,7 +61,7 @@ export const EventProvider = (props) => {
     // TODO: write function to delete entry in EventJoin table
 
     return (
-        <EventContext.Provider value={{ events, getEvents, createEvent, joinEvent, leaveEvent }} >
+        <EventContext.Provider value={{ events, getEvents, createEvent, joinEvent, leaveEvent, deleteEvent }} >
             { props.children }
         </EventContext.Provider>
     )

@@ -8,7 +8,7 @@ import Draggable from "react-draggable"
 import { Paper } from "@material-ui/core";
 
 export const EventList = (props) => {
-    const { events, getEvents, joinEvent, leaveEvent } = useContext(EventContext)
+    const { events, getEvents, joinEvent, leaveEvent, deleteEvent } = useContext(EventContext)
     const [ change, setChange ] = useState(0)
 
     useEffect(() => {
@@ -39,6 +39,8 @@ export const EventList = (props) => {
         );
       }
 
+
+
     const renderEventForm = event => {
         return (
             <Draggable>
@@ -49,11 +51,14 @@ export const EventList = (props) => {
                         <div>
                             {event.date} @ {event.time}
                         </div>
+                        <div>
+                            Current Attendees: {event.attendees}
+                        </div>
                         {
                             event.joined
                                 ? <>
                                     <Button variant="contained" color="primary" onClick={() => {
-                                        setChange(Math.random())
+                                      
                                         leaveEvent(event.id)
                                     }}>Leave</Button>
                                     </>
@@ -63,6 +68,12 @@ export const EventList = (props) => {
                                     }}
                                     >Join</Button>
                         }
+                        <Button variant="contained" color="inherit" onClick={(evt) => {
+                            evt.preventDefault()
+                            deleteEvent(event.id)
+                        }}>
+                            Delete
+                        </Button>
                     </section>
                 </Paper>
             </Draggable>
@@ -72,34 +83,14 @@ export const EventList = (props) => {
     return (
         <article className="events">
             <header className="events__header">
-                <h1>Level Up Game Events</h1>
-                {OutlinedButton()}
+                <div className="events__title">Level Up Game Events</div>
+                <div className="events__button"> {OutlinedButton()}</div>
             </header>
-            {
-                events.map(event => renderEventForm(event))
-            }
+            <div className="events__box">
+                {
+                    events.map(event => renderEventForm(event))
+                }
+            </div>
         </article>
     )
 }
-
-// events.map(event => {
-//     return <section key={event.id} className="registration">
-//         <div className="registration__game">{event.game.name}</div>
-//         <div>{event.description}</div>
-//         <div>
-//             {
-//                 new Date(event.date).toLocaleDateString("en-US",
-//                 {
-//                     weekday: 'long',
-//                     year: 'numeric',
-//                     month: 'long',
-//                     day: 'numeric'
-//                 })
-//             }
-//             @ {event.time}
-//         </div>
-//         <div>
-//             Hosted by {event.host.user.first_name} {event.host.user.last_name}
-//         </div>
-//         <br/>
-//     </section>

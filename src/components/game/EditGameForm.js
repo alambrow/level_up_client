@@ -9,20 +9,10 @@ export const EditGameForm = () => {
     const {gameId} = useParams()
     const history = useHistory()
 
-    // TODO: Get game info by id, then populate form with that data, resend via PUT to edit
-
-    // const [currentGame, setCurrentGame] = useState({
-    //     name: gameObj.name,
-    //     game_type: gameObj.game_type,
-    //     description: gameObj.description,
-    //     number_of_players: gameObj.number_of_players,
-    //     maker: gameObj.maker
-    // })
-
     useEffect(() => {
         getGameById(gameId).then(data =>  
             setCurrentGame(data))
-    }, [])
+    }, [gameId])
 
     useEffect(() => {
         getGameTypes()
@@ -63,7 +53,7 @@ export const EditGameForm = () => {
                     />
                     <label htmlFor="game_type">Game type:</label>
                     <br/>
-                    <select name="game_type" defaultValue={currentGame.game_type} onChange={handleControlledInputChange}>Select one
+                    <select name="game_type" onChange={handleControlledInputChange}>Select one
                     {
                         gameTypes.map(gT => (
                             <option key={gT.id} value={gT.id}>
@@ -93,7 +83,7 @@ export const EditGameForm = () => {
 
                     // Send PUT request to your API
                     updateGame(game)
-                    history.push("/")
+                    history.push("/games")
                 }}
                 className="btn btn-primary">Create</button>
         </form>

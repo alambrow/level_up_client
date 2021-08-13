@@ -3,7 +3,6 @@ import { useHistory } from 'react-router';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import MenuIcon from '@material-ui/icons/Menu';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 
 export default function SimpleMenu() {
@@ -54,7 +53,7 @@ export default function SimpleMenu() {
       >
         <MenuItem onClick={event => {
             event.preventDefault()
-            history.push("/")}}>Home</MenuItem>
+            history.push("/games")}}>Games</MenuItem>
         <MenuItem onClick={event => {
             event.preventDefault()
             history.push("/events")}}>Events</MenuItem>
