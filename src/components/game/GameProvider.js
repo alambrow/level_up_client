@@ -8,7 +8,7 @@ export const GameProvider = (props) => {
 
 
     const getGames = () => {
-        return fetch("http://localhost:8000/games", {
+        return fetch("https://lambrow-levelup-server.herokuapp.com/games", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
@@ -18,7 +18,7 @@ export const GameProvider = (props) => {
     }
 
     const getGameById = (gameId) => {
-        return fetch(`http://localhost:8000/games/${gameId}`, {
+        return fetch(`https://lambrow-levelup-server.herokuapp.com/games/${gameId}`, {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
@@ -27,7 +27,7 @@ export const GameProvider = (props) => {
     }
 
     const createGame = (game) => {
-        return fetch("http://localhost:8000/games", {
+        return fetch("https://lambrow-levelup-server.herokuapp.com/games", {
             method: "POST", 
             headers:{
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`,
@@ -40,7 +40,7 @@ export const GameProvider = (props) => {
     }
     
     const getGameTypes = () => {
-        return fetch("http://localhost:8000/gametypes", {
+        return fetch("https://lambrow-levelup-server.herokuapp.com/gametypes", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
@@ -50,7 +50,7 @@ export const GameProvider = (props) => {
     }
     
     const updateGame = gameObj => {
-        return fetch(`http://localhost:8000/games/${gameObj.id}`, {
+        return fetch(`https://lambrow-levelup-server.herokuapp.com/games/${gameObj.id}`, {
             method: "PUT",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`,
@@ -62,7 +62,7 @@ export const GameProvider = (props) => {
     }
 
     const deleteGame = gameId => {
-        return fetch(`http://localhost:8000/games/${gameId}`, {
+        return fetch(`https://lambrow-levelup-server.herokuapp.com/games/${gameId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
